@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import matplotlib.pyplot as plt
 
 st.set_page_config(
     page_title="Risco de Defasagem - Passos Mágicos",
@@ -22,6 +23,12 @@ st.write(
     "Esta aplicação estima a probabilidade de um aluno estar em situação de risco "
     "com base em indicadores acadêmicos, de engajamento e desenvolvimento."
 )
+
+st.markdown("""
+### 🎯 Objetivo
+Apoiar a identificação precoce de alunos em risco, permitindo ações preventivas
+pela equipe pedagógica com base em dados.
+""")
 
 st.markdown("---")
 st.markdown("### Informe os indicadores do aluno")
@@ -46,20 +53,47 @@ if st.button("Prever risco", use_container_width=True):
     predicao = modelo.predict(entrada)[0]
     probabilidade = modelo.predict_proba(entrada)[0][1]
 
-    st.markdown("### Resultado da análise")
+    st.markdown("### 📊 Resultado da análise")
 
     if probabilidade >= 0.70:
         st.error(f"🔴 Alto risco de defasagem ({probabilidade:.1%})")
         faixa = "Alto risco"
+        interpretacao = "O aluno apresenta forte probabilidade de queda de desempenho."
     elif probabilidade >= 0.40:
         st.warning(f"🟡 Médio risco de defasagem ({probabilidade:.1%})")
         faixa = "Médio risco"
+        interpretacao = "O aluno apresenta sinais de atenção e pode precisar de acompanhamento."
     else:
         st.success(f"🟢 Baixo risco de defasagem ({probabilidade:.1%})")
         faixa = "Baixo risco"
+        interpretacao = "O aluno apresenta indicadores mais estáveis no cenário atual."
 
     st.write(f"**Classificação prevista pelo modelo:** {int(predicao)}")
     st.write(f"**Faixa interpretativa:** {faixa}")
+    st.write(f"**Interpretação:** {interpretacao}")
+
+    st.markdown("### 🔎 Fatores que influenciaram o resultado")
+
+    fatores = []
+
+    if ida < 6:
+        fatores.append("Desempenho acadêmico baixo (IDA).")
+    if ieg < 6:
+        fatores.append("Baixo engajamento nas atividades (IEG).")
+    if ipv < 6:
+        fatores.append("Baixo indicador de ponto de virada (IPV).")
+    if ips < 5:
+        fatores.append("Aspectos psicossociais merecem atenção (IPS).")
+    if ipp < 5:
+        fatores.append("Aspectos psicopedagógicos merecem acompanhamento (IPP).")
+    if ian < 6:
+        fatores.append("Indicador de adequação de nível abaixo do ideal (IAN).")
+
+    if fatores:
+        for fator in fatores:
+            st.write(f"• {fator}")
+    else:
+        st.write("Indicadores dentro de faixa adequada para o perfil analisado.")
 
     st.markdown("### Variáveis mais relevantes no modelo")
     importancias = pd.Series(
@@ -75,12 +109,25 @@ if st.button("Prever risco", use_container_width=True):
         hide_index=True
     )
 
+    st.markdown("### 📈 Importância dos indicadores")
+    fig, ax = plt.subplots(figsize=(8, 4))
+    importancias.sort_values().plot(kind='barh', ax=ax)
+    ax.set_xlabel("Importância")
+    ax.set_ylabel("Indicador")
+    ax.set_title("Peso relativo das variáveis no modelo")
+    st.pyplot(fig)
+
     st.markdown("### Leitura gerencial")
     st.write(
         "O modelo considera principalmente desempenho acadêmico (IDA), "
         "engajamento (IEG) e ponto de virada (IPV) como fatores centrais "
-        "para estimar o risco."
+        "para estimar o risco. Assim, a identificação precoce desses sinais "
+        "pode apoiar intervenções mais assertivas da equipe pedagógica."
     )
 
 st.markdown("---")
+st.markdown("""
+💡 *Este modelo auxilia na tomada de decisão educacional, permitindo intervenções
+mais assertivas com base em dados.*
+""")
 st.caption("Aplicação desenvolvida para o Datathon - Passos Mágicos")
