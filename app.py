@@ -129,35 +129,36 @@ def inject_css() -> None:
         """
         <style>
             :root {
-                --ink: #14324a;
-                --muted: #62758a;
-                --bg-soft: #f4f7fb;
-                --surface: rgba(255, 255, 255, 0.84);
-                --border: rgba(20, 50, 74, 0.10);
-                --brand: #0f766e;
-                --accent: #f08a5d;
-                --critical: #b42318;
-                --warning: #b7791f;
-                --positive: #18794e;
+                --ink: #333333;
+                --muted: #5f6b75;
+                --bg-soft: #f5f5f5;
+                --surface: rgba(255, 255, 255, 0.94);
+                --border: rgba(27, 125, 161, 0.16);
+                --brand: #1b7da1;
+                --brand-soft: #8bb9da;
+                --accent: #fe682d;
+                --critical: #fe2e34;
+                --warning: #fdc20b;
+                --positive: #1b7da1;
             }
 
             [data-testid="stAppViewContainer"] {
                 background:
-                    radial-gradient(circle at top left, rgba(15, 118, 110, 0.10), transparent 24%),
-                    radial-gradient(circle at top right, rgba(240, 138, 93, 0.10), transparent 24%),
-                    linear-gradient(180deg, #e8eff4 0%, #dce7ef 100%);
+                    radial-gradient(circle at top left, rgba(139, 185, 218, 0.20), transparent 24%),
+                    radial-gradient(circle at top right, rgba(253, 194, 11, 0.16), transparent 22%),
+                    linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
             }
 
             .block-container {
                 padding-top: 1.4rem;
                 padding-bottom: 2rem;
                 max-width: 1280px;
-                background: linear-gradient(180deg, rgba(248, 251, 253, 0.92), rgba(240, 246, 250, 0.90));
-                border: 1px solid rgba(20, 50, 74, 0.10);
+                background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(245, 245, 245, 0.93));
+                border: 1px solid rgba(27, 125, 161, 0.14);
                 border-radius: 28px;
                 padding-left: 1.35rem;
                 padding-right: 1.35rem;
-                box-shadow: 0 20px 45px rgba(20, 50, 74, 0.08);
+                box-shadow: 0 20px 45px rgba(27, 125, 161, 0.08);
                 backdrop-filter: blur(6px);
             }
 
@@ -193,13 +194,15 @@ def inject_css() -> None:
             }
 
             .hero {
-                background: linear-gradient(135deg, rgba(20, 50, 74, 0.96), rgba(15, 118, 110, 0.92));
-                border: 1px solid rgba(255, 255, 255, 0.12);
+                background:
+                    radial-gradient(circle at top right, rgba(254, 104, 45, 0.24), transparent 26%),
+                    linear-gradient(135deg, rgba(27, 125, 161, 0.98), rgba(139, 185, 218, 0.96));
+                border: 1px solid rgba(255, 255, 255, 0.18);
                 border-radius: 24px;
                 padding: 1.8rem 2rem;
                 margin-bottom: 1rem;
                 color: #ffffff;
-                box-shadow: 0 20px 45px rgba(20, 50, 74, 0.15);
+                box-shadow: 0 20px 45px rgba(27, 125, 161, 0.18);
             }
 
             .hero-grid {
@@ -243,13 +246,13 @@ def inject_css() -> None:
             .hero-mini-card {
                 padding: 1rem 1.05rem;
                 border-radius: 18px;
-                background: rgba(255, 255, 255, 0.10);
-                border: 1px solid rgba(255, 255, 255, 0.12);
+                background: rgba(255, 255, 255, 0.18);
+                border: 1px solid rgba(255, 255, 255, 0.20);
             }
 
             .hero-mini-card span {
                 display: block;
-                color: rgba(255, 255, 255, 0.72);
+                color: rgba(255, 255, 255, 0.78);
                 font-size: 0.8rem;
                 margin-bottom: 0.25rem;
             }
@@ -264,7 +267,7 @@ def inject_css() -> None:
                 border: 1px solid var(--border);
                 border-radius: 18px;
                 padding: 1rem 1.1rem;
-                box-shadow: 0 12px 25px rgba(20, 50, 74, 0.06);
+                box-shadow: 0 12px 25px rgba(27, 125, 161, 0.06);
             }
 
             .soft-card h4 {
@@ -297,7 +300,7 @@ def inject_css() -> None:
 
             .risk-panel p {
                 margin: 0;
-                color: rgba(20, 50, 74, 0.84);
+                color: rgba(51, 51, 51, 0.88);
                 max-width: 760px;
             }
 
@@ -309,18 +312,18 @@ def inject_css() -> None:
             }
 
             .risk-high {
-                background: rgba(180, 35, 24, 0.10);
-                border-color: rgba(180, 35, 24, 0.20);
+                background: rgba(254, 46, 52, 0.10);
+                border-color: rgba(254, 46, 52, 0.22);
             }
 
             .risk-mid {
-                background: rgba(183, 121, 31, 0.12);
-                border-color: rgba(183, 121, 31, 0.22);
+                background: rgba(253, 194, 11, 0.16);
+                border-color: rgba(253, 194, 11, 0.28);
             }
 
             .risk-low {
-                background: rgba(24, 121, 78, 0.10);
-                border-color: rgba(24, 121, 78, 0.20);
+                background: rgba(27, 125, 161, 0.10);
+                border-color: rgba(27, 125, 161, 0.24);
             }
 
             .note-grid {
@@ -339,7 +342,7 @@ def inject_css() -> None:
                 border: 1px solid var(--border);
                 border-radius: 18px;
                 padding: 0.95rem 1rem;
-                box-shadow: 0 12px 24px rgba(20, 50, 74, 0.06);
+                box-shadow: 0 12px 24px rgba(27, 125, 161, 0.06);
                 min-height: 100%;
             }
 
@@ -367,9 +370,9 @@ def inject_css() -> None:
             }
 
             [data-baseweb="tab"] {
-                background: rgba(255, 255, 255, 0.72);
+                background: rgba(255, 255, 255, 0.84);
                 border-radius: 999px;
-                border: 1px solid rgba(20, 50, 74, 0.10);
+                border: 1px solid rgba(139, 185, 218, 0.40);
                 padding: 0.45rem 1rem;
                 color: var(--ink) !important;
             }
@@ -380,9 +383,10 @@ def inject_css() -> None:
             }
 
             [data-baseweb="tab"][aria-selected="true"] {
-                background: rgba(15, 118, 110, 0.12);
-                border-color: rgba(15, 118, 110, 0.35);
+                background: rgba(27, 125, 161, 0.14);
+                border-color: rgba(27, 125, 161, 0.42);
                 color: var(--brand) !important;
+                box-shadow: inset 0 -3px 0 var(--critical);
             }
 
             [data-baseweb="tab"][aria-selected="true"] p,
@@ -392,7 +396,7 @@ def inject_css() -> None:
             }
 
             [data-baseweb="tab"]:hover {
-                background: rgba(255, 255, 255, 0.92);
+                background: rgba(255, 255, 255, 0.96);
             }
 
             @media (max-width: 980px) {
