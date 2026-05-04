@@ -358,6 +358,8 @@ def inject_css() -> None:
                 color: var(--ink) !important;
                 font-family: Georgia, "Times New Roman", serif;
                 font-weight: 700;
+                font-size: clamp(1.15rem, 1.5vw, 1.7rem) !important;
+                line-height: 1.15 !important;
             }
 
             [data-testid="stMetricDelta"] {
